@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=yes">
+        <title>{{ title }}</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='./img/grandpi2.png') }}">
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <body>
+        <div class="bg-dark">
+            <div class="container">
+                <div class="row">
+                    <nav class="col navbar navbar-expand-lg navbar-dark">
+                        <a class="navbar-brand text-white" href="index.html">Grandpybot</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <img class="img-fluid" src="../static/img/bannière_papy.png"/>
+            </div>
+        </div>
+
+        {% block home %}{% endblock %}
+        {% block content %}{% endblock %}
+
+
+        <footer class="container">
+            <div class="row no-gutters blockquote text-center">
+                <div class='col'>
+                    <a target="_blank" href="https://www.linkedin.com/in/quentin-faure-b818221b9/">
+                        <img class="img-fluid" id="linkedin" src="../static/img/lin.png" alt="LinkedIn's logo"/>
+                    </a>
+                    <a target="_blank" href="https://github.com/Gotha01/OCR-Project7">
+                        <img class="img-fluid" id="github" src="../static/img/github_logo.png" alt="Githubs's logo"/>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center ">
+                    <p>
+                        Bot développé par Faure Quentin
+                    </p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    </body>
+</html>

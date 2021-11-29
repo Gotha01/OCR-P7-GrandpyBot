@@ -1,15 +1,30 @@
+@font-face {
+    font-family: "Sansita";
+    src: url("/grandpybot/static/fonts/SansitaSwashed-Regular.ttf");
+}
+
 nav
 {
     font-weight: bold;
     font-size: 12px;
 }
 
-a img
-{
-    max-height : 12%;
-}
-
 p
 {
-    font-family: 'Lucida Sans';
+    font-family: "Sansita";
+}
+
+footer
+{
+    padding-top: 13.5%;
+}
+
+footer div .col
+{
+    max-width: 100%;
+}
+
+footer div .col img
+{
+    max-width: 6%;
 }

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block home %}
+
+<!-- Header-->
+<div clase="jumbotron">
+    <div class="container">
+        <div class="text-center font-weight-bold">
+            <div class="row">
+                <div class="col">
+                    <h1>
+                        Bonjour à vous
+                    </h1>
+                    <p>
+                        Ayant énormément voyagé tout au long de ma vie, je vous propose de me demander
+                        quelques informations sur les sites qui vous viennent à l'esprit.
+                        Je vous promets que, en fonction de ce que m'accorde ma mémoire moins
+                        fiable qu'à la belle époque, je vous donnerai quelques anecdotes sur ces lieux.
+                    </p>
+                </div>
+            </div>
+        
+            <div class="row">
+                <div class="col-12">
+                    <form class="form-group">
+                        <textarea class="form-control text-center" name="question" id="question" onclick="this.value ='';">
+    Alors lancez-vous! Donnez moi le nom d'un lieu.
+                        </textarea>
+                        <div class="button text-center">
+                            <button type="button" class="btn btn-primary font-weight-bold">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>  
+    </div>
+</div>
+{% endblock %}

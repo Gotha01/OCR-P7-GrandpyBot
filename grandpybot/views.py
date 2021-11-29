@@ -1,11 +1,16 @@
 # -*- coding: utf-8 -*-
-
+import os.path
 from flask import Flask, render_template
 
-app = Flask(__name__)
+TEMPLATE_DIR = os.path.abspath("grandpybot/templates")
+STATIC_DIR = os.path.abspath("grandpybot/static")
+
+app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATE_DIR)
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def base():
+    return render_template("home.html", title='GrandPyBot')
 
-
+@app.route('/result/')
+def result():
+    return render_template("result.html", title='GrandPyBot')
