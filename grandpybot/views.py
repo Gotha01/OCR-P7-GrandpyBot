@@ -9,8 +9,8 @@ app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATE_DIR)
 
 @app.route('/')
 def base():
-    return render_template("home.html", title='GrandPyBot')
+    return render_template("home.html", title='GrandPyBot', banniere='../static/img/banniere_papy.png')
 
 @app.route('/result/')
 def result():
-    return render_template("result.html", title='GrandPyBot')
+    return render_template("result.html", title='GrandPyBot', banniere="../static/img/banniere_papy.png")

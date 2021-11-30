@@ -7,21 +7,21 @@
         <link rel="icon" type="image/png" href="{{ url_for('static', filename='./img/grandpi2.png') }}">
         <link 
             rel="stylesheet" 
-            href="{{ url_for('static', filename='css/lib/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+            href="{{ url_for('static', filename='css/lib/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <body>
         <div class="bg-dark">
             <div class="container">
                 <div class="row">
                     <nav class="col navbar navbar-expand-lg navbar-dark">
-                        <a class="navbar-brand text-white" href="index.html">Grandpybot</a>
+                        <a class="navbar-brand text-white" href="/">Grandpybot</a>
                     </nav>
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <img class="img-fluid" src="../static/img/bannière_papy.png"/>
+                <img class="img-fluid" src="{{banniere}}"/>
             </div>
         </div>
 

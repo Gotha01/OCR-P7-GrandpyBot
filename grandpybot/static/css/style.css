@@ -1,0 +1,40 @@
+body
+{
+    background-color: #ddd;
+}
+
+body 
+{
+    font-family: 'Sansita Swashed', sans-serif;
+    font-size: larger;
+}
+
+.jumbotron
+{
+    font-size: small;
+}
+
+h1, nav
+{
+    font-weight: bolder;
+}
+
+footer
+{
+    padding-top: 13.5%;
+}
+
+footer div .col
+{
+    max-width: 100%;
+}
+
+footer div
+{
+    font-size: 90%;
+}
+
+footer div .col img
+{
+    max-width: 5.5%;
+}
