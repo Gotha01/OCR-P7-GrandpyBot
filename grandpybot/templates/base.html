@@ -24,11 +24,57 @@
                 <img class="img-fluid" src="{{banniere}}"/>
             </div>
         </div>
-
-        {% block home %}{% endblock %}
-        {% block content %}{% endblock %}
-
-
+        <div class="container">
+            <div class="text-center font-weight-bold">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="img-fluid" src="../static/img/papysais.png" alt="papysais">
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                            <h1>
+                                Bonjour à vous
+                            </h1>
+                            <p>
+                                Ayant énormément voyagé tout au long de ma vie, je vous propose de me demander
+                                quelques informations sur les sites qui vous viennent à l'esprit.
+                                Je vous promets que, en fonction de ce que m'accorde ma mémoire moins
+                                fiable qu'à la belle époque, je vous donnerai quelques anecdotes sur ces lieux.
+                            </p>
+                            <div class="col-12">
+                                <form class="form-group">
+                                    <textarea class="form-control text-center" name="question" id="question" onclick="this.value ='';">
+        Saisissez ici le nom d'un lieu dont vous voulez que je vous parle.
+                                    </textarea>
+                                    <div class="button text-center">
+                                        <a href="result/"><button type="button" class="btn btn-primary font-weight-bold">Rechercher</button></a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">Bonjour</h2>
+                                <p class="card-text"> explication</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">Bonjour</h2>
+                                <p class="card-text">carte gmap</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+        </div>
         <footer class="container">
             <div class="row no-gutters blockquote text-center">
                 <div class='col'>

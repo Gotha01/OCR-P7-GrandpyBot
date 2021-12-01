@@ -3,15 +3,15 @@ body
     background-color: #ddd;
 }
 
+nav
+{
+    height: 80px;
+}
+
 body 
 {
     font-family: 'Sansita Swashed', sans-serif;
     font-size: larger;
-}
-
-.jumbotron
-{
-    font-size: small;
 }
 
 h1, nav
@@ -36,5 +36,6 @@ footer div
 
 footer div .col img
 {
-    max-width: 5.5%;
+    max-width: 70px;
+    min-width: none;
 }
