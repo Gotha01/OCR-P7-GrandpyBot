@@ -1,22 +1,32 @@
-body
+.card
 {
-    background-color: #ddd;
+    background-color: #e1e1e1;
+    vertical-align: middle;
 }
 
-nav
-{
-    height: 80px;
-}
-
-body 
+.card-text, .card-header, nav, p
 {
     font-family: 'Sansita Swashed', sans-serif;
-    font-size: larger;
+    font-size: 1em;
+    text-align: center;
 }
 
-h1, nav
+#papymg
 {
-    font-weight: bolder;
+    max-width: 200px;
+    max-height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#answers .card
+{
+    height: 250px;
+}
+
+#answers .body-text
+{
+    text-align: center;
 }
 
 footer
@@ -24,17 +34,7 @@ footer
     padding-top: 13.5%;
 }
 
-footer div .col
-{
-    max-width: 100%;
-}
-
-footer div
-{
-    font-size: 90%;
-}
-
-footer div .col img
+.network_img img
 {
     max-width: 70px;
     min-width: none;
