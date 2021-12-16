@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+        <title>Grandpybot</title>
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='./img/grandpi2.png') }}">
+        <link 
+            rel="stylesheet" 
+            href="{{ url_for('static', filename='css/lib/bootstrap/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+
+    <body class="mw-45">
+        <!--Nav and banner-->
+        {% block NandBContainer %}{% endblock %}
+        <!--bot-->
+        {% block botContainer %}{% endblock %}
+        <!--form-->
+        {% block formContainer %}{% endblock %}
+        <!--map-->
+        {% block map %}{% endblock %}
+        <!--footer-->
+        {% block footContainer %}{% endblock %}
+    </body>
+</html>
+<script>
+    
+</script>

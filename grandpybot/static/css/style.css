@@ -1,41 +1,24 @@
-.card
+body
 {
-    background-color: #e1e1e1;
-    vertical-align: middle;
-}
-
-.card-text, .card-header, nav, p
-{
-    font-family: 'Sansita Swashed', sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     text-align: center;
+    background-color: #ddd;
+    font-family: Georgia, Times, 'Times New Roman', serif;
 }
 
 #papymg
 {
-    max-width: 200px;
-    max-height: 350px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#answers .card
-{
-    height: 250px;
-}
-
-#answers .body-text
-{
-    text-align: center;
-}
-
-footer
-{
-    padding-top: 13.5%;
+    max-width: 250px;
+    max-height: 280px;
 }
 
 .network_img img
 {
-    max-width: 70px;
+    max-width: 50px;
     min-width: none;
+}
+
+#fc, #foc, #mc
+{
+    background-color: #ddd;
 }
