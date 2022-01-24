@@ -3,28 +3,99 @@
 
     <head>
         <meta charset="utf-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
-        <title>Grandpybot</title>
-        <link rel="icon" type="image/png" href="{{ url_for('static', filename='./img/grandpi2.png') }}">
+        <meta name="viewport" 
+            content="width=device-width, initial-scale=1.0, shrink-to-fit=no, user-scalable=no">
+        <link rel="icon" 
+              type="image/png" 
+              href="{{ url_for('static', filename='./img/grandpi2.png') }}">
         <link 
             rel="stylesheet" 
             href="{{ url_for('static', filename='css/lib/bootstrap/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Grandpybot</title>
+        
     </head>
 
     <body class="mw-45">
         <!--Nav and banner-->
-        {% block NandBContainer %}{% endblock %}
+        <nav class="navbar bg-dark d-flex p-3">
+            <a class="navbar-brand text-white font-weight-bold" href="/">Grandpybot</a>
+        </nav>
+
+        <div id="bannerContain" class="container mw-100 p-0" >
+            <div class="row">
+                <img class="col-12 img-fluid" src="{{ url_for('static', filename='img/banniere_papy_acceuil.png') }}"/>
+            </div>
+        </div>
+
         <!--bot-->
-        {% block botContainer %}{% endblock %}
+        <div id="botContain" class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div class="container">
+                        <div class="row mw-100 justify-content-center">
+                            <img id="papymg" class="img-fluid mw-25 col-12 col-lg-6 " src="../static/img/papy.png" alt="Grandpybot-image">
+                            <div id="papychat" class="col-12 col-lg-6 ml-15">
+                                <p id="description" class="container font-weight-bold h-100">
+                                    <br/>Bien le bonjour!<br/><br/>
+                                    Ayant énormément voyagé tout au long de ma vie, je vous propose de me demander
+                                    quelques informations sur les lieux qui vous viennent à l'esprit.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <!--form-->
-        {% block formContainer %}{% endblock %}
-        <!--map-->
-        {% block map %}{% endblock %}
+        <div id="formContain" class="container">
+            <div class="row justify-content-md-center">
+                <div id="fc" class="card col-12 col-md-8 border-0">
+                    <form class="form-group" method="get">
+                        <label for="question"></label>
+                        <input type="text" class="form-control font-weight-bold text-center" 
+                            name="question" id="question" 
+                            value="Donnez moi le lieu qui vous interresse" 
+                            onclick="this.value = '';">
+                        <button id="button" class="btn btn-primary font-weight-italic">Rechercher</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
         <!--footer-->
-        {% block footContainer %}{% endblock %}
+        <footer id="footContain" class="container mt-25">
+            <div class="row justify-content-md-cente"> 
+                <div id="foc" class="card border-0">
+                    <div class="card-body"></div>
+                        <div class="card-img">
+                            <div class='col-12'>
+                                <a class="network_img" target="_blank" href="https://www.linkedin.com/in/quentin-faure-b818221b9/">
+                                    <img class="img-fluid" id="linkedin" src="../static/img/lin.png" alt="LinkedIn's logo"/>
+                                </a>
+                                <a class="network_img" target="_blank" href="https://github.com/Gotha01/OCR-Project7">
+                                    <img class="img-fluid" id="github" src="../static/img/github_logo.png" alt="Githubs's logo"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-text"></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p>
+                                        Bot développé par Faure Quentin
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </footer>
+
+        <script src="../static/index.js" async></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key={{ gak }}&libraries=&v=weekly" async></script>  
     </body>
 </html>
-<script>
-    
-</script>
