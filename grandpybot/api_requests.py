@@ -6,14 +6,21 @@ import random
 import requests
 
 class Wiki_search():
-    def __init__(self, zone, desc_sentences=2):
+    def __init__(self, zone, adress="", desc_sentences=2):
         self.zone = zone
+        self.adress = adress
         self.desc_sent = desc_sentences
         self.bot_said = [
             "J'y suis passé plusieurs fois dans ma vie. ",
             "Alors, écoute bien jusqu'au bout. ",
-            "Pour en avoir fait la visite il y a longtemps, ",
+            "Pour avoir étudié cet endroit dans ma jeunesse, je peux t'en dire plusieurs choses.",
             "Laisse moi te raconter ce que j'en sais. "]
+        self.bot_error = [
+            "Je ne crois pas avoir déjà entendu parler de cet endroit.",
+            "Tu sais, de mon temps, ce lieu s'appelait peut-être différemment.\
+            Regarde le GPS, peut-être en sait-il plus que moi."
+        ]
+        self.count = 1
         self.search = self.search_zone()
         self.less_parens_search = self.remove_nested_parens()
         self.many_sentences_search = self.sentences_search()
@@ -25,10 +32,15 @@ class Wiki_search():
             of the wikipedia description of the selected location"""
         wiki_config = wikipediaapi.Wikipedia('fr')
         result = wiki_config.page(self.zone)
-        if result.exists():        
-            words = result.summary[0:700]
-            return words
+        if result.exists():
+            words = result.summary[0:1000]
+            if "== Toponym" in words:
+                self.count -= 1
+                return words
+            else:
+                return words
         else:
+            self.count -= 1 
             return "Êtes-vous sûr de l'avoir écrit correctement?"
     
     def remove_nested_parens(self):
@@ -47,19 +59,34 @@ class Wiki_search():
     
     def sentences_search(self):
         sentences_list = self.less_parens_search.split(".")
-        sentences_to_show = sentences_list[:self.desc_sent]
-        result = ".".join(sentences_to_show) + "."
-        return result
+        if "-C" in sentences_list:
+            index_of = sentences_list.index("-C")
+            sentences_list.pop(index_of-1)
+            to_replace = sentences_list[index_of-2]
+            sentences_list[index_of-2] = to_replace + "J-C"
+        if len(sentences_list) >= 2:
+            random_sentences = random.randint(0, (len(sentences_list)-2))
+            sentences_to_show = sentences_list[random_sentences:random_sentences+self.desc_sent]
+            result = ".".join(sentences_to_show) + "."
+            return result
+        elif len(sentences_list) << 2:
+            result = ".".join(sentences_list) + "."
+            return result
+        elif "Êtes-vous sûr de l'avoir écrit correctement?" in sentences_list:
+            return "Êtes-vous sûr de l'avoir écrit correctement?"
 
     def cleaning_syntax(self):
         return self.many_sentences_search.replace(",.", ".").replace(" ,", ",").replace("  ", " ").replace(". ", ".\n")
     
     def finally_answer(self):
-        if self.good_syntax_search != "Êtes-vous sûr de l'avoir écrit correctement?":
+        if self.count:
             result = self.bot_said[random.randint(0, 3)] + self.good_syntax_search
             return result
+        elif self.adress != "":
+            result = "Je connais l'adresse mais ne sait pas grand chose dessus. C'est au "+ self.adress
+            return result
         else:
-            return self.good_syntax_search
+            return self.bot_error[random.randint(0, 1)]
 
 
 class Google_maps_search():
@@ -79,9 +106,13 @@ class Google_maps_search():
         request = requests.get(url, params=info)
         if request.status_code == requests.codes.ok:
             answer = request.json()
-            result = answer['candidates'][0]
-            to_search['address'] = result['formatted_address']
-            to_search['name'] = result['name']
-            to_search['lati'] = result['geometry']['location']['lat']
-            to_search['lngi'] = result['geometry']['location']['lng']
-            return to_search
+            if answer['status'] != 'ZERO_RESULTS':
+                result = answer['candidates'][0]
+                to_search['address'] = result['formatted_address']
+                to_search['name'] = result['name']
+                to_search['lati'] = result['geometry']['location']['lat']
+                to_search['lngi'] = result['geometry']['location']['lng']
+                return to_search
+            else:
+                to_search['address'] = ""
+                return to_search

@@ -7,6 +7,7 @@ class Parser():
             'a',
             'abord',
             'absolument',
+            'adresse',
             'afin',
             'ah',
             'ai',
@@ -64,6 +65,8 @@ class Parser():
             'beaucoup',
             'bien',
             'bigre',
+            'bonjour',
+            'bonsoir',
             'boum',
             'bravo',
             'brrr',
@@ -98,6 +101,7 @@ class Parser():
             'chacune',
             'chaque',
             'cher',
+            'cherche',
             'chers',
             'chez',
             'chiche',
@@ -119,10 +123,12 @@ class Parser():
             'comparables',
             'compris',
             'concernant',
+            'connais',
+            'connais-tu',
             'contre',
             'couic',
             'crac',
-            'd',
+            "d'",
             'da',
             'dans',
             'de',
@@ -199,6 +205,7 @@ class Parser():
             'environ',
             'es',
             'est',
+            'est-ce',
             'et',
             'etant',
             'etc',
@@ -224,6 +231,8 @@ class Parser():
             'font',
             'g',
             'gens',
+            'grandpy',
+            'grandpybot',
             'h',
             'ha',
             'hein',
@@ -355,6 +364,7 @@ class Parser():
             'p',
             'paf',
             'pan',
+            'papy',
             'par',
             'parce',
             'parfois',
@@ -460,10 +470,14 @@ class Parser():
             's',
             'sa',
             'sacrebleu',
+            'salut',
+            'sais',
+            'sais-tu',
             'sait',
             'sans',
             'sapristi',
             'sauf',
+            'savoir',
             'se',
             'sein',
             'seize',
@@ -557,6 +571,7 @@ class Parser():
             'troisième',
             'troisièmement',
             'trop',
+            'trouve',
             'très',
             'tsoin',
             'tsouin',
@@ -590,6 +605,7 @@ class Parser():
             'votre',
             'vous',
             'vous-mêmes',
+            'voudrais',
             'vu',
             'vé',
             'vôtre',
@@ -636,17 +652,25 @@ class Parser():
             'valeur',
             'voie',
             'voient',
+            'voulais',
+            'vieux',
             'état',
             'étions'
             ]
-        self.sentence = sentence
+        self.sentence = sentence.lower()
         self.result = self.to_parse()
 
     def to_parse(self):
         clean_words = []
         list_of_words = self.sentence.split()
-        for element in list_of_words:
-            if element not in self.parse_list:
-                clean_words.append(element)
-        parse_sentence = " ".join(clean_words)
+        for word in list_of_words:
+            just_word = word.replace("!","").replace("?","").replace(',', "").replace(".", "")
+            if "'" not in just_word:
+                if just_word not in self.parse_list:
+                    clean_words.append(just_word)
+            else:
+                onlyword = just_word[2:]
+                if onlyword not in self.parse_list:
+                    clean_words.append(onlyword)
+        parse_sentence = " ".join(clean_words) 
         return parse_sentence

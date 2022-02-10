@@ -4,41 +4,60 @@ const click_Button = document.getElementById('button');
 
 click_Button.addEventListener("click", function(event){
     event.preventDefault();
-    if (text_Area.value !== "Donnez moi le lieu qui vous interresse" && text_Area.value !== ""){
+    if (text_Area.value !== ""){
         fetch("/search?question="+text_Area.value)
             .then(function (response){
                     if (response.status !== 200) {
                         console.log('Erreur: ' + response.status);
                     return;
                     };
-                    response.json().then(publish)
+                    response.json().then(display) 
             });
 
-    function publish(data) {
-        const chat_elt = document.getElementById("papychat");
-        const answer = document.getElementById("description");
-        console.log(data.infos)
-        let elt_to_publish = `<div class="container"><p class="font-weight-bold h-100">${text_Area.value.toUpperCase()}</p>
-        <p class="answer_left">${data.pos_story}<br><br> Si tu veux en savoir plus,
-        va voir sur <a href="https://fr.wikipedia.org/wiki/${text_Area.value}">Wikipedia</a></p>
-        <p class="answer_left">Voici l'adresse: ${data.infos.address}</p>
-        <div id="map" class="container" style="height: 350px;" ></div></div>`;
-        answer.innerHTML = elt_to_publish;
-        chat_elt.appendChild(answer);
+    function display(data) {
+        var d = new Date();
+        var getMinutes = d.getMinutes();
+        if (getMinutes.toString().length === 1) {
+            minutes = '0' + getMinutes;
+        }else{
+            minutes = getMinutes;
+        };
+        var hours = d.getHours() + ":" + minutes;
+        var d = new Date();
+        var hours = d.getHours() + ":" + d.getMinutes()
+        let elt_to_publish = 
+            `<div class="row justify-content-end">
+                <p class="col-8 border rounded border-dark">${text_Area.value}<br/><span class="time-left">${hours}</span></p>
+                <img id="users" class="col-2 align-self-end" src="../static/img/users.png" alt="Grandpybot-image">
+                
+            </div>
+            <div class="row">
+                <img id="papymg" class="col-2" src="../static/img/papy_head.png" alt="Grandpybot-image">
+                <p class="col-8 border rounded border-dark">
+                    ${data.pos_story}<br><br> Si tu veux en savoir plus, va voir sur 
+                    <a target="_blank" href="https://fr.wikipedia.org/wiki/${data.user_input}">Wikipedia</a><br/>
+                    <span class="time-left">${hours}</span>
+                </p>
+            </div>`;
+        document.getElementById('description').innerHTML = document.getElementById('description').innerHTML + elt_to_publish;
         initMap(data)
-        window.scrollBy(0, window.innerHeight);
+        scroller = document.getElementById('toScroll')
+        scroller.scrollTop = scroller.scrollHeight;
         return data;
     };
 
     let map;
     function initMap(data) {
-        console.log(document.getElementById("map"));
+        const mapper = document.getElementById("mapSpace");
+        const mapContain = document.createElement("map")
+        let space = `<p id='searchTitle' class="row justify-content-center mb-0">${data.clean_input.toUpperCase()}</p><div id="map" class="container" style="height: 300px;"></div>`;
+        mapper.innerHTML = space;
+        mapper.appendChild(mapContain);
         const myLatLng = { lat: data.infos.lati, lng: data.infos.lngi };
         map = new google.maps.Map(document.getElementById("map"), {
             center: myLatLng,
-            zoom: 4,
+            zoom: 6,
             });
-        console.log(map);
         new google.maps.Marker({
         position: myLatLng,
         map,

@@ -1,15 +1,21 @@
 body
 {
-    font-size: 1.1em;
+    font-size: 1.2em;
     text-align: center;
     background-color: #ddd;
-    font-family: Georgia, Times, 'Times New Roman', serif;
+    font-family:'Times New Roman', serif;
 }
 
-#papymg
+p
 {
-    max-width: 250px;
-    max-height: 280px;
+    font-size: 12px;
+}
+
+#papymg ,#users
+{
+    padding: 5px;
+    height: 65px;
+    width: auto;
 }
 
 .network_img img
@@ -18,7 +24,29 @@ body
     min-width: none;
 }
 
-#fc, #foc, #mc
+#foc, #mc
 {
     background-color: #ddd;
+}
+#botContain, #fc
+{
+    background-color: #aaa;
+}
+
+.scroll-container, #mapSpace
+{
+    height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 25px;
+    background-color:#ddd;
+    border-style: solid;
+    border-width: 7px;
+    border-color:#888;
+}
+
+#searchTitle
+{
+    font-weight: bolder;
+    font-size: larger;
 }

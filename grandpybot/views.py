@@ -26,12 +26,13 @@ def index():
 def search():
     if request.method == 'GET':
         user_input = request.args.get('question')
-        if user_input not in ("Donnez moi le lieu qui vous interresse", ""):
+        if user_input != "":
             clean_input = Parser(user_input).result
             infos = gms(google_api_key).request_google(clean_input)
-            pos_story = ws(clean_input).answer
+            pos_story = ws(clean_input, infos['address']).answer
             return jsonify(
                 user_input=user_input,
+                clean_input=clean_input,
                 pos_story=pos_story,
                 infos=infos
                 )

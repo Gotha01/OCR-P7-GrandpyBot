@@ -14,6 +14,7 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <title>Grandpybot</title>
         
+        
     </head>
 
     <body class="mw-45">
@@ -29,46 +30,59 @@
         </div>
 
         <!--bot-->
-        <div id="botContain" class="container">
+        <div id="botContain" class="container border rounded p-1">
             <div class="row">
-                <div class="col-12 mt-3">
-                    <div class="container">
-                        <div class="row mw-100 justify-content-center">
-                            <img id="papymg" class="img-fluid mw-25 col-12 col-lg-6 " src="../static/img/papy.png" alt="Grandpybot-image">
-                            <div id="papychat" class="col-12 col-lg-6 ml-15">
-                                <p id="description" class="container font-weight-bold h-100">
-                                    <br/>Bien le bonjour!<br/><br/>
-                                    Ayant énormément voyagé tout au long de ma vie, je vous propose de me demander
-                                    quelques informations sur les lieux qui vous viennent à l'esprit.
+                <div class="col-12 col-lg-6">
+                    <div class="container p-3">
+                        <div id='toScroll' class="scroll-container mh-150">
+                            <div class='row border-1' id="description">
+                                <img id="papymg" class="col-2" src="{{ url_for('static', filename='img/papy_head.png') }}" alt="Grandpybot-image">
+                                <p class="col-8 border border-dark rounded " >
+                                    Bien le bonjour!<br/>
+                                    Je suis Grandpybot. Ayant énormément voyagé tout au long de ma vie, je vous propose de me demander
+                                    quelques informations sur les destinations qui vous viennent à l'esprit.<br/>
+                                    <span class="time-left">
+                                    <script>
+                                        var d = new Date();
+                                        var getMinutes = d.getMinutes();
+                                        if (getMinutes.toString().length === 1) {
+                                            minutes = '0' + getMinutes;
+                                        }else{
+                                            minutes = getMinutes;
+                                        };
+                                        var hours = d.getHours() + ":" + minutes;
+                                        document.write(hours)
+                                    </script>
+                                </span>
                                 </p>
                             </div>
+                        </div>
+                        <div id="input" class='row justify-content-center'>
+                            <form class="form-group" method="get">
+                                <label for="question"></label>
+                                <input type="text" class="form-control-life col-10 col-lg-8" 
+                                    name="question" id="question" 
+                                    value="" 
+                                    onclick="this.value = '';">
+                                <button id="button" class="btn btn-primary col-6 col-lg-2">Rechercher</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>            
+                <div class="col-12 col-lg-6">
+                    <div class="container p-3">
+                        <div class="col-12 p-0" id="mapSpace">
+                            <img  src="{{ url_for('static', filename='img/World.png') }}" style="max-height: 100%;" alt="nothing">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <!--form-->
-        <div id="formContain" class="container">
-            <div class="row justify-content-md-center">
-                <div id="fc" class="card col-12 col-md-8 border-0">
-                    <form class="form-group" method="get">
-                        <label for="question"></label>
-                        <input type="text" class="form-control font-weight-bold text-center" 
-                            name="question" id="question" 
-                            value="Donnez moi le lieu qui vous interresse" 
-                            onclick="this.value = '';">
-                        <button id="button" class="btn btn-primary font-weight-italic">Rechercher</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-
 
         <!--footer-->
         <footer id="footContain" class="container mt-25">
             <div class="row justify-content-md-cente"> 
-                <div id="foc" class="card border-0">
+                <div id="foc" class="card border-0 pt-25">
                     <div class="card-body"></div>
                         <div class="card-img">
                             <div class='col-12'>
