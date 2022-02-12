@@ -6,7 +6,15 @@ import random
 import requests
 
 class Wiki_search():
+    """Function to search in Wikipedia-API."""
     def __init__(self, zone, adress="", desc_sentences=2):
+        """
+            Init function for Wiki-search class.
+        Args:
+            zone (str): Name of the zone to search.
+            adress (str, optional): optional return if search don't match. Defaults to "".
+            desc_sentences (int, optional): Number of sentences needed to return the description of the wikipedia page. Defaults to 2.
+        """
         self.zone = zone
         self.adress = adress
         self.desc_sent = desc_sentences
@@ -58,12 +66,14 @@ class Wiki_search():
         return result
     
     def sentences_search(self):
+        """ Function to split text on '.' but ignore them in dates. """
         sentences_list = self.less_parens_search.split(".")
         if "-C" in sentences_list:
             index_of = sentences_list.index("-C")
+            sentences_list.pop(index_of)
             sentences_list.pop(index_of-1)
             to_replace = sentences_list[index_of-2]
-            sentences_list[index_of-2] = to_replace + "J-C"
+            sentences_list[index_of-2] = to_replace + " J-C"
         if len(sentences_list) >= 2:
             random_sentences = random.randint(0, (len(sentences_list)-2))
             sentences_to_show = sentences_list[random_sentences:random_sentences+self.desc_sent]
@@ -76,9 +86,11 @@ class Wiki_search():
             return "Êtes-vous sûr de l'avoir écrit correctement?"
 
     def cleaning_syntax(self):
+        """ Returns sentences with better syntactic appearence."""
         return self.many_sentences_search.replace(",.", ".").replace(" ,", ",").replace("  ", " ").replace(". ", ".\n")
     
     def finally_answer(self):
+        """ Returns a str which could be an answer for a bot."""
         if self.count:
             result = self.bot_said[random.randint(0, 3)] + self.good_syntax_search
             return result
@@ -90,10 +102,10 @@ class Wiki_search():
 
 
 class Google_maps_search():
+    """Find the coordinates on Google Maps API from an text"""
     def __init__(self, key):
         self.key = key
         
-
     def request_google(self, user_input=""):
         to_search = {}
         url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?"

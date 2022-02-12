@@ -21,20 +21,23 @@ app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATE_DIR)
 def index():
     return render_template('index.html', gak=google_api_key)
 
-
 @app.route('/search/', methods=['GET'])
 def search():
     if request.method == 'GET':
         user_input = request.args.get('question')
         if user_input != "":
-            clean_input = Parser(user_input).result
-            infos = gms(google_api_key).request_google(clean_input)
-            pos_story = ws(clean_input, infos['address']).answer
-            return jsonify(
-                user_input=user_input,
-                clean_input=clean_input,
-                pos_story=pos_story,
-                infos=infos
-                )
+            try:
+                clean_input = Parser(user_input).result
+                infos = gms(google_api_key).request_google(clean_input)
+                pos_story = ws(clean_input, infos['address']).answer
+                return jsonify(
+                    user_input=user_input,
+                    clean_input=clean_input,
+                    pos_story=pos_story,
+                    infos=infos
+                    )
+            except UnicodeEncodeError:
+                print("Erreur d'encodage unicode!")
+                user_input = ""
         else:
             pass

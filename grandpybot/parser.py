@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 
 class Parser():
-    def __init__(self, sentence=""):
+    """Class to parse text through a stop-words list."""
+    def __init__(self, sentence=str):
+        """
+            Init function.
+        Args:
+            sentence (str): [text to parse]. Defaults to str.
+        """
         self.parse_list = [
             'a',
             'abord',
@@ -164,6 +170,7 @@ class Parser():
             'dire',
             'directe',
             'directement',
+            'dis',
             'dit',
             'dite',
             'dits',
@@ -661,10 +668,17 @@ class Parser():
         self.result = self.to_parse()
 
     def to_parse(self):
+        """
+            Function to parse in class Parser which removes symbols
+            and split sentences from a text.
+        Returns:
+            [str]: [text whithout stop-words and punctuation]
+        """
         clean_words = []
         list_of_words = self.sentence.split()
         for word in list_of_words:
-            just_word = word.replace("!","").replace("?","").replace(',', "").replace(".", "")
+            just_word = word.replace("!","").replace("?","")\
+                .replace(',', "").replace(".", "")
             if "'" not in just_word:
                 if just_word not in self.parse_list:
                     clean_words.append(just_word)
