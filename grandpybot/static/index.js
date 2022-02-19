@@ -2,7 +2,7 @@ let text_Area = document.getElementById("question");
 
 const click_Button = document.getElementById('button');
 
-click_Button.addEventListener("click", function(event){
+click_Button.addEventListener("click", function(event, data){
     event.preventDefault();
     if (text_Area.value !== ""){
         console.log("/search?question="+text_Area.value);
@@ -33,7 +33,7 @@ click_Button.addEventListener("click", function(event){
                     <img id="papymg" class="col-2" src="../static/img/papy_head.png" alt="Grandpybot-image">
                     <p class="col-8 border rounded border-dark">
                         ${data.pos_story}<br><br> Si tu veux en savoir plus, va voir sur 
-                        <a target="_blank" href="https://fr.wikipedia.org/wiki/${data.user_input}">Wikipedia</a><br/>
+                        <a target="_blank" href="https://fr.wikipedia.org/wiki/${data.cj_input}">Wikipedia</a><br/>
                         <span class="time-left">${hours}</span>
                     </p>
                 </div>`;

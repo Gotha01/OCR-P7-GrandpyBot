@@ -28,11 +28,14 @@ def search():
         if user_input != "":
             try:
                 clean_input = Parser(user_input).result
+                clean_join_input = "_".join(clean_input.split())
+                print(clean_join_input)
                 infos = gms(google_api_key).request_google(clean_input)
                 pos_story = ws(clean_input, infos['address']).answer
                 return jsonify(
                     user_input=user_input,
                     clean_input=clean_input,
+                    cj_input= clean_join_input,
                     pos_story=pos_story,
                     infos=infos
                     )

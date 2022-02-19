@@ -6,7 +6,7 @@ import random
 import requests
 
 class Wiki_search():
-    """Function to search in Wikipedia-API."""
+    """Class to search in Wikipedia-API."""
     def __init__(self, zone, adress="", desc_sentences=2):
         """
             Init function for Wiki-search class.
@@ -34,7 +34,12 @@ class Wiki_search():
         self.many_sentences_search = self.sentences_search()
         self.good_syntax_search = self.cleaning_syntax()
         self.answer = self.finally_answer()
+    """
+        def search_coordinates(self):
+            "Returns coordinate about the place searched on wikipedia"
+            wiki_config = wikipediaapi.Wikipedia('fr')
 
+    """
     def search_zone(self):
         """ Returns, if available, the first seven hundred characters
             of the wikipedia description of the selected location"""
@@ -42,7 +47,7 @@ class Wiki_search():
         result = wiki_config.page(self.zone)
         if result.exists():
             words = result.summary[0:1000]
-            if "== Toponym" in words:
+            if "== Toponym" in words or "== Patronyme" in words:
                 self.count -= 1
                 return words
             else:

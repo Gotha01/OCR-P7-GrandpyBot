@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from distutils.command.clean import clean
+
+
 class Parser():
     """Class to parse text through a stop-words list."""
     def __init__(self, sentence=str):
@@ -70,6 +73,7 @@ class Parser():
             'beau',
             'beaucoup',
             'bien',
+            'bientôt',
             'bigre',
             'bonjour',
             'bonsoir',
@@ -114,6 +118,7 @@ class Parser():
             'chut',
             'chère',
             'chères',
+            'chose',
             'ci',
             'cinq',
             'cinquantaine',
@@ -130,6 +135,7 @@ class Parser():
             'compris',
             'concernant',
             'connais',
+            'connaissais',
             'connais-tu',
             'contre',
             'couic',
@@ -185,6 +191,8 @@ class Parser():
             'doit',
             'doivent',
             'donc',
+            'donne', 
+            'donnez',
             'dont',
             'douze',
             'douzième',
@@ -262,6 +270,7 @@ class Parser():
             'hé',
             'hélas',
             'i',
+            'infos',
             'il',
             'ils',
             'importe',
@@ -600,6 +609,7 @@ class Parser():
             'via',
             'vif',
             'vifs',
+            'ville',
             'vingt',
             'vivat',
             'vive',
@@ -613,6 +623,8 @@ class Parser():
             'vous',
             'vous-mêmes',
             'voudrais',
+            'voyage',
+            'voyages',
             'vu',
             'vé',
             'vôtre',
@@ -674,17 +686,25 @@ class Parser():
         Returns:
             [str]: [text whithout stop-words and punctuation]
         """
-        clean_words = []
+        clean_words = [" "]
+        linki_words  = ["de", "du", "des", "le", "la", "les", "des"]
         list_of_words = self.sentence.split()
+        last_word_checked = str()
         for word in list_of_words:
             just_word = word.replace("!","").replace("?","")\
                 .replace(',', "").replace(".", "")
-            if "'" not in just_word:
-                if just_word not in self.parse_list:
-                    clean_words.append(just_word)
+            if last_word_checked == clean_words[-1] and just_word in linki_words:
+                clean_words.append(just_word)
+                last_word_checked = just_word
             else:
-                onlyword = just_word[2:]
-                if onlyword not in self.parse_list:
-                    clean_words.append(onlyword)
-        parse_sentence = " ".join(clean_words) 
+                if "'" not in just_word:
+                    if just_word not in self.parse_list:
+                        clean_words.append(just_word)
+                        last_word_checked = just_word
+                else:
+                    onlyword = just_word[2:]
+                    if onlyword not in self.parse_list:
+                        clean_words.append(onlyword)
+                        last_word_checked = onlyword
+        parse_sentence = " ".join(clean_words[1:])
         return parse_sentence
