@@ -29,7 +29,6 @@ def search():
             try:
                 clean_input = Parser(user_input).result
                 clean_join_input = "_".join(clean_input.split())
-                print(clean_join_input)
                 infos = gms(google_api_key).request_google(clean_input)
                 pos_story = ws(clean_input, infos['address']).answer
                 return jsonify(
