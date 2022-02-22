@@ -699,7 +699,7 @@ class Parser():
                 clean_words.append(just_word)
                 last_word_checked = just_word
             else:
-                if "'" not in just_word:
+                if len(clean_words) != 1 or "'" not in just_word:
                     if just_word not in self.parse_list:
                         clean_words.append(just_word)
                         last_word_checked = just_word
@@ -709,4 +709,5 @@ class Parser():
                         clean_words.append(onlyword)
                         last_word_checked = onlyword
         parse_sentence = " ".join(clean_words[1:])
+        print(parse_sentence)
         return parse_sentence
