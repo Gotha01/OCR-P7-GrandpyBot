@@ -1,3 +1,4 @@
+from tarfile import LENGTH_LINK
 import urllib.request
 
 from grandpybot import api_requests as apir
@@ -32,20 +33,16 @@ def test_API_google(monkeypatch):
     monkeypatch.setattr(urllib.request, "urlopen", mockreturn)
     assert apir.Google_maps_search(google_api_key).request_google(user_input="marseille") == results
 
-
 # Wiki API tests
-def test_type():
-    """Tests the length of the 'Wiki_search.search_zone' function response"""
-    result = {
-    "type" : str,
-    }
-    assert type(apir.Wiki_search("Dakar").search_zone()) == result['type']
+class Test_wiki:
+    LENGTH = 1000
+    TYPE = str
+    SEARCH_ZONE = apir.Wiki_search("Dakar").search_zone()
+    
 
-def test_len():
-    """Tests the type of the 'Wiki_search.search_zone' function response"""
-    results = {
-        "lenght": 1000
-        }
-    assert len(apir.Wiki_search("Dakar").search_zone()) <= results['lenght']
+    def test_type_wiki(self):
+        assert type(self.SEARCH_ZONE) == self.TYPE
+    def test_len_wiki(self):
+        assert len(self.SEARCH_ZONE) <= self.LENGTH
 
 #mock final pour la fonction qui traite la question de manière générale
