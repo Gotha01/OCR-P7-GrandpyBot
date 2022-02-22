@@ -1,4 +1,3 @@
-from tarfile import LENGTH_LINK
 import urllib.request
 
 from grandpybot import api_requests as apir
@@ -38,7 +37,7 @@ class Test_wiki:
     LENGTH = 1000
     TYPE = str
     SEARCH_ZONE = apir.Wiki_search("Dakar").search_zone()
-    
+
 
     def test_type_wiki(self):
         assert type(self.SEARCH_ZONE) == self.TYPE
