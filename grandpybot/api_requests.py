@@ -26,7 +26,8 @@ class Wiki_search():
         self.bot_error = [
             "Je ne crois pas avoir déjà entendu parler de cet endroit.",
             "Tu sais, de mon temps, ce lieu s'appelait peut-être différemment.\
-            Regarde le GPS, peut-être en sait-il plus que moi."
+            Regarde le GPS, peut-être en sait-il plus que moi.",
+            "Êtes-vous sûr de l'avoir écrit correctement?"
         ]
         self.count = 1
         self.search = self.search_zone()
@@ -34,12 +35,7 @@ class Wiki_search():
         self.many_sentences_search = self.sentences_search()
         self.good_syntax_search = self.cleaning_syntax()
         self.answer = self.finally_answer()
-    """
-        def search_coordinates(self):
-            "Returns coordinate about the place searched on wikipedia"
-            wiki_config = wikipediaapi.Wikipedia('fr')
 
-    """
     def search_zone(self):
         """ Returns, if available, the first seven hundred characters
             of the wikipedia description of the selected location"""
@@ -73,6 +69,8 @@ class Wiki_search():
     def sentences_search(self):
         """ Function to split text on '.' but ignore them in dates. """
         sentences_list = self.less_parens_search.split(".")
+        if sentences_list[-1] == "":
+            sentences_list.pop(-1)
         if "-C" in sentences_list:
             index_of = sentences_list.index("-C")
             sentences_list.pop(index_of)
@@ -103,7 +101,7 @@ class Wiki_search():
             result = "Je connais l'adresse mais ne sait pas grand chose dessus. C'est au "+ self.adress
             return result
         else:
-            return self.bot_error[random.randint(0, 1)]
+            return self.bot_error[random.randint(0, 2)]
 
 
 class Google_maps_search():

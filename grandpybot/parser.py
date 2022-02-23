@@ -358,6 +358,7 @@ class Parser():
             'nôtre',
             'nôtres',
             'o',
+            'occupé',
             'oh',
             'ohé',
             'ollé',
@@ -423,8 +424,11 @@ class Parser():
             'pour',
             'pourquoi',
             'pourrais',
+            'pourrais-tu',
+            'pourriez-vous'
             'pourrait',
             'pouvait',
+            'pouvez-vous',
             'prealable',
             'precisement',
             'premier',
@@ -689,7 +693,7 @@ class Parser():
             [str]: [text whithout stop-words and punctuation]
         """
         clean_words = [" "]
-        linki_words  = ["de", "du", "des", "le", "la", "les", "des"]
+        linki_words  = ["et", "de", "du", "des", "le", "la", "les", "des"]
         list_of_words = self.sentence.split()
         last_word_checked = str()
         for word in list_of_words:
@@ -709,5 +713,4 @@ class Parser():
                         clean_words.append(onlyword)
                         last_word_checked = onlyword
         parse_sentence = " ".join(clean_words[1:])
-        print(parse_sentence)
         return parse_sentence

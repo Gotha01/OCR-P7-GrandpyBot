@@ -5,6 +5,7 @@ from grandpybot import parser as pa
 from config_user import google_api_key
 
 
+
 # Parsing test
 def test_parsing():
     """
@@ -34,14 +35,25 @@ def test_API_google(monkeypatch):
 
 # Wiki API tests
 class Test_wiki:
-    LENGTH = 1000
-    TYPE = str
-    SEARCH_ZONE = apir.Wiki_search("Dakar").search_zone()
-
+    def setup_method(self):
+        self.length = 1000
+        self.type = str
+        self.bot_error = [
+                "Je ne crois pas avoir déjà entendu parler de cet endroit.",
+                "Tu sais, de mon temps, ce lieu s'appelait peut-être différemment.\
+                Regarde le GPS, peut-être en sait-il plus que moi.",
+                "Êtes-vous sûr de l'avoir écrit correctement?"
+            ]
+        self.normal_search_zone = apir.Wiki_search("Dakar").search_zone()
+        self.bad_search = apir.Wiki_search("vezrhnthgrea").search_zone()
+        
 
     def test_type_wiki(self):
-        assert type(self.SEARCH_ZONE) == self.TYPE
+        assert type(self.normal_search_zone) == self.type
     def test_len_wiki(self):
-        assert len(self.SEARCH_ZONE) <= self.LENGTH
+        assert len(self.normal_search_zone) <= self.length
+    def test_bad_search(self):
+        assert self.bad_search in self.bot_error
+
 
 #mock final pour la fonction qui traite la question de manière générale
