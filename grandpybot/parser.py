@@ -222,6 +222,7 @@ class Parser():
             'es',
             'est',
             'est-ce',
+            'espère',
             'et',
             'etant',
             'etc',

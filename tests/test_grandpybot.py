@@ -35,6 +35,9 @@ def test_API_google(monkeypatch):
 
 # Wiki API tests
 class Test_wiki:
+    """
+        Class for multiple testing of data obtained through queries via the python module wikipediaAPI
+    """
     def setup_method(self):
         self.length = 1000
         self.type = str
@@ -47,13 +50,12 @@ class Test_wiki:
         self.normal_search_zone = apir.Wiki_search("Dakar").search_zone()
         self.bad_search = apir.Wiki_search("vezrhnthgrea").search_zone()
         
-
     def test_type_wiki(self):
+        "Tests the type of data retrieved"
         assert type(self.normal_search_zone) == self.type
     def test_len_wiki(self):
+        "Tests the max length of data retrieved"
         assert len(self.normal_search_zone) <= self.length
     def test_bad_search(self):
+        "Tests for failure to return processable data from requests to the API"
         assert self.bad_search in self.bot_error
-
-
-#mock final pour la fonction qui traite la question de manière générale
