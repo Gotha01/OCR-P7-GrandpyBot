@@ -1,10 +1,10 @@
 # **GrandPy Bot**
 
 
-[![](https://img.shields.io/badge/Version-1.0.1-blue)]()
+[![](https://img.shields.io/badge/Version-1.0.3-blue)]()
 
 [![](https://img.shields.io/badge/Dev__Languages-Python/HTML/JS-blue)]()
-[![](https://img.shields.io/badge/Last_Commit-Update_Readme-blue)]()
+[![](https://img.shields.io/badge/Last_Commit-v1.0.3-blue)]()
 [![](https://img.shields.io/badge/Tests-5%20passed%2C%200%20failure-green)]()
 
 [![](https://img.shields.io/badge/Script__Languages-English-red)]()
