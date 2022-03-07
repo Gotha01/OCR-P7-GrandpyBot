@@ -1,4 +1,4 @@
-# GrandPy Bot
+# **GrandPy Bot**
 
 
 [![](https://img.shields.io/badge/Version-1.0.1-blue)]()
@@ -9,9 +9,9 @@
 
 [![](https://img.shields.io/badge/Script__Languages-English-red)]()
 [![](https://img.shields.io/badge/User__App__Language-French-red)]()
-# Code établi selon le cahier des charges suivant:
+# **Code établi selon le cahier des charges suivant:**
 
-## Fonctionnalités
+## *Fonctionnalités*
 
     1/ Interactions en AJAX : l'utilisateur envoie sa question en appuyant sur entrée et la réponse
         s'affiche directement dans l'écran, sans recharger la page.
@@ -21,7 +21,7 @@
     4/ Vous pouvez vous amuser à inventer plusieurs réponses différentes
         de la part de GrandPy mais ce n'est pas une obligation. Amusez-vous!
 
-## Parcours utilisateur
+## *Parcours utilisateur*
 
     L'utilisateur ouvre son navigateur et entre l'URL que vous lui avez fournie.
     Il arrive devant une page contenant les éléments suivants :
@@ -48,16 +48,67 @@
     une branche débouche au 43 rue de Paradis, la deuxième au 57 rue d'Hauteville
     et la troisième en impasse. [En savoir plus sur Wikipedia]"
 
-## execution de l'app
+# **Lancer localement**
 
+## *1/ Installer le pré-requis*
+#
 
-## Execution des tests
+### Cloner le projet
+
+```bash
+  git clone https://github.com/Gotha01/OCR-Project7.git
+```
+
+### Allez dans le répertoire du projet
+
+```bash
+  $ cd OCR-Project7
+```
+
+### Créer un nouvel environnement virtuel et l'atteindre
+
+```bash
+  $ python -m venv new_env
+```
+```
+  $ source new_env/Scripts/activate
+```
+
+### Installer les dépendances
+
+```bash
+  $ pip install -r requirements.txt
+```
+
+## *2/ Lancer l'application*
+#
+
+### **Démarrer le serveur**
+
+```bash
+  $ python run.py
+```
+
+### **Accéder au site**
+
+Utiliser dans un navigateur web l'URL obtenu lors du lancée du serveur à la ligne:
+```
+  * Running on http://...:5400/
+```
+#
+**`! Attention !`**
+
+*Vouloir copier l'URL en utilisant
+le raccourci Ctrl+c dans votre cmd entraine l'arrêt du serveur.*
+#
+
+# **Exécution des tests**
 Pour lancer les tests, exécutez la commande suivante à la racine du projet:
 ```bash
   pytest -v
 ```
 
 
-## Auteur
+# **Auteur**
 
 [@FaureQuentin](https://www.github.com/Gotha01) pour la formation "Développeur d'application Python" d'[OpenClassRooms.](https://openclassrooms.com/fr/)
